@@ -2,7 +2,22 @@ const dados = require('../data/atendimentos.json');
 
 const listar = (req, res) => {
   try {
-    const { busca, realizado, pagina = 1, limite = 10 } = req.query;
+    const { busca, realizado, pagina, limite } = req.query;
+
+    const paginaNum = parseInt(pagina) || 1;
+    const limiteNum = parseInt(limite) || 10;
+
+    if (paginaNum < 1) {
+      return res.status(400).json({ erro: 'O parâmetro "pagina" deve ser maior que zero.' });
+    }
+
+    if (limiteNum < 1 || limiteNum > 100) {
+      return res.status(400).json({ erro: 'O parâmetro "limite" deve estar entre 1 e 100.' });
+    }
+
+    if (realizado && !['Sim', 'Não'].includes(realizado)) {
+      return res.status(400).json({ erro: 'O parâmetro "realizado" deve ser "Sim" ou "Não".' });
+    }
 
     let resultado = [...dados];
 
@@ -21,33 +36,45 @@ const listar = (req, res) => {
     }
 
     const total = resultado.length;
-    const paginaNum = parseInt(pagina);
-    const limiteNum = parseInt(limite);
+    const totalPaginas = Math.ceil(total / limiteNum) || 1;
+
+    if (paginaNum > totalPaginas) {
+      return res.status(400).json({ erro: `Página ${paginaNum} não existe. Total de páginas: ${totalPaginas}.` });
+    }
+
     const inicio = (paginaNum - 1) * limiteNum;
-    const fim = inicio + limiteNum;
-    const paginado = resultado.slice(inicio, fim);
+    const paginado = resultado.slice(inicio, inicio + limiteNum);
 
     res.json({
       dados: paginado,
       total,
       pagina: paginaNum,
-      totalPaginas: Math.ceil(total / limiteNum),
+      totalPaginas,
     });
   } catch (err) {
-    res.status(500).json({ erro: 'Erro ao listar atendimentos' });
+    console.error(err);
+    res.status(500).json({ erro: 'Erro interno ao listar atendimentos.' });
   }
 };
 
 const buscarPorId = (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const atendimento = dados.find((a) => a.id === id);
-    if (!atendimento) {
-      return res.status(404).json({ erro: 'Atendimento não encontrado' });
+
+    if (isNaN(id)) {
+      return res.status(400).json({ erro: 'O ID informado não é válido.' });
     }
+
+    const atendimento = dados.find((a) => a.id === id);
+
+    if (!atendimento) {
+      return res.status(404).json({ erro: `Atendimento com ID ${id} não encontrado.` });
+    }
+
     res.json(atendimento);
   } catch (err) {
-    res.status(500).json({ erro: 'Erro ao buscar atendimento' });
+    console.error(err);
+    res.status(500).json({ erro: 'Erro interno ao buscar atendimento.' });
   }
 };
 
@@ -84,7 +111,8 @@ const metricas = (req, res) => {
       porAdvogado,
     });
   } catch (err) {
-    res.status(500).json({ erro: 'Erro ao calcular métricas' });
+    console.error(err);
+    res.status(500).json({ erro: 'Erro interno ao calcular métricas.' });
   }
 };
 
