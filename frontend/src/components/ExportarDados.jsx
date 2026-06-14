@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { colors, rounded, shadows, typography } from "@/styles/tokens"
 
 function ExportarDados({ dados }) {
   const exportarCSV = () => {
@@ -21,12 +21,10 @@ function ExportarDados({ dados }) {
     const { jsPDF } = await import("jspdf")
     const { default: autoTable } = await import("jspdf-autotable")
     const doc = new jsPDF()
-
     doc.setFontSize(14)
-    doc.text("Relatório de Atendimentos - RMH Advocacia", 14, 15)
+    doc.text("Relatório de Atendimentos", 14, 15)
     doc.setFontSize(10)
     doc.text(`Gerado em: ${new Date().toLocaleDateString("pt-BR")}`, 14, 22)
-
     autoTable(doc, {
       startY: 28,
       head: [["Cliente", "Data", "Horário", "Advogado", "Realizado"]],
@@ -36,20 +34,25 @@ function ExportarDados({ dados }) {
         a.advogado || "—", a.realizado
       ]),
       styles: { fontSize: 8 },
-      headStyles: { fillColor: [201, 168, 76] },
+      headStyles: { fillColor: [colors.raw.gold] },
     })
-
     doc.save("atendimentos.pdf")
   }
 
   return (
-    <div className="flex gap-3">
-      <Button variant="outline" onClick={exportarCSV}>
+    <div className="flex gap-2">
+      <button
+        onClick={exportarCSV}
+        className={`${rounded.md} ${shadows.button} ${typography.body} border ${colors.borderGreen} ${colors.textGreen} ${colors.bgGreenHover} hover:text-white transition-colors px-4 py-2`}
+      >
         Exportar CSV
-      </Button>
-      <Button onClick={exportarPDF}>
+      </button>
+      <button
+        onClick={exportarPDF}
+        className={`${rounded.md} ${shadows.button} ${typography.body} ${colors.bgGold} ${colors.textWhite} ${colors.bgGoldHover} transition-colors px-4 py-2`}
+      >
         Exportar PDF
-      </Button>
+      </button>
     </div>
   )
 }
