@@ -2,7 +2,8 @@ const dados = require('../data/atendimentos.json');
 
 const listar = (req, res) => {
   try {
-    const { busca, realizado, pagina, limite } = req.query;
+    const { busca, pagina, limite } = req.query;
+    const realizado = req.query.realizado ? decodeURIComponent(req.query.realizado) : null;
 
     const paginaNum = parseInt(pagina) || 1;
     const limiteNum = parseInt(limite) || 10;
@@ -11,8 +12,8 @@ const listar = (req, res) => {
       return res.status(400).json({ erro: 'O parâmetro "pagina" deve ser maior que zero.' });
     }
 
-    if (limiteNum < 1 || limiteNum > 100) {
-      return res.status(400).json({ erro: 'O parâmetro "limite" deve estar entre 1 e 100.' });
+    if (limiteNum < 1 || limiteNum > 500) {
+      return res.status(400).json({ erro: 'O parâmetro "limite" deve estar entre 1 e 500.' });
     }
 
     if (realizado && !['Sim', 'Não'].includes(realizado)) {
