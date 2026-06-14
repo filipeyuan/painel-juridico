@@ -1,5 +1,5 @@
 import ExportarDados from "@/components/ExportarDados"
-import { colors, typography, shadows, rounded, spacing, buttons } from "@/styles/tokens"
+import { colors, typography, shadows, rounded, spacing, } from "@/styles/tokens"
 
 function TabelaAtendimentos({ dados, busca, setBusca, filtroRealizado, setFiltroRealizado }) {
   return (
@@ -7,7 +7,7 @@ function TabelaAtendimentos({ dados, busca, setBusca, filtroRealizado, setFiltro
       <div className="flex flex-col gap-4 mb-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <h2 className={`${typography.heading2} ${colors.textGold}`}>Agendamentos</h2>
-          <ExportarDados dados={dados} />
+          <ExportarDados dados={dados} busca={busca} filtroRealizado={filtroRealizado} />
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <input
