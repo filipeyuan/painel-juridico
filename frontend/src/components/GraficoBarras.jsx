@@ -9,7 +9,16 @@ function GraficoBarras({ dados }) {
         <BarChart data={dados} layout="vertical">
           <XAxis type="number" stroke={colors.raw.textMuted} />
           <YAxis type="category" dataKey="nome" stroke={colors.raw.textMuted} width={160} tick={{ fontSize: 11, fill: colors.raw.textSecondary }} />
-          <Tooltip contentStyle={{ backgroundColor: colors.raw.bgCard, border: `1px solid ${colors.raw.border}`, color: "#fff" }} />
+          <Tooltip
+  contentStyle={{
+    backgroundColor: colors.raw.bgNav,
+    border: `1px solid ${colors.raw.gold}`,
+    color: colors.raw.textWhite,
+    borderRadius: "8px",
+    fontSize: "12px",
+  }}
+  labelStyle={{ color: colors.raw.gold }}
+/>
           <Bar dataKey="quantidade" fill={colors.chartPrimary} radius={[0, 6, 6, 0]} />
         </BarChart>
       </ResponsiveContainer>

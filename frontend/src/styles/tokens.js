@@ -1,35 +1,52 @@
 export const colors = {
-  bgPrimary: "bg-[#0d1f1f]",
-  bgCard: "bg-[#122929]",
-  bgSecondary: "bg-[#0a1a1a]",
-  bgHover: "hover:bg-[#0d1f1f]",
-  textPrimary: "text-white",
-  textSecondary: "text-gray-300",
-  textMuted: "text-gray-500",
+  bgPrimary: "bg-[#f8f7f4]",
+  bgCard: "bg-white",
+  bgSecondary: "bg-[#1a3a3a]",
+  bgHover: "hover:bg-[#f0ede8]",
+  bgNavInput: "bg-[#0f2222]",
+  bgGold: "bg-[#c9a84c]",
+  bgGoldHover: "hover:bg-[#b8963e]",
+  bgGreen: "bg-[#1a3a3a]",
+  bgGreenHover: "hover:bg-[#1a3a3a]",
+
+  textPrimary: "text-[#1a1a1a]",
+  textSecondary: "text-[#555]",
+  textMuted: "text-[#888]",
   textGold: "text-[#c9a84c]",
+  textWhite: "text-white",
+  textGreen: "text-[#1a3a3a]",
+  textNav: "text-[#8ab8b8]",
+  textNavActive: "text-[#c9a84c]",
+
   accent: "bg-[#c9a84c]",
   accentHover: "hover:bg-[#b8963e]",
   accentText: "text-[#c9a84c]",
   accentBorder: "border-[#c9a84c]",
-  cardGold: "bg-[#c9a84c]",
-  border: "border-[#1e3a3a]",
-  borderGold: "border-[#c9a84c]",
   focusBorder: "focus:border-[#c9a84c]",
 
+  border: "border-[#e0e0d8]",
+  borderGold: "border-[#c9a84c]",
+  borderGreen: "border-[#1a3a3a]",
+  borderNav: "border-[#2d5a5a]",
+
   raw: {
-    bgCard: "#122929",
-    bgPrimary: "#0d1f1f",
-    border: "#1e3a3a",
+    bgCard: "#ffffff",
+    bgPrimary: "#f8f7f4",
+    bgNav: "#1a3a3a",
+    border: "#e0e0d8",
     gold: "#c9a84c",
-    greenDark: "#4a8a7a",
-    textMuted: "#6b7280",
-    textSecondary: "#9ca3af",
+    goldDark: "#b8963e",
+    green: "#1a3a3a",
+    greenLight: "#8ab8b8",
+    textMuted: "#888888",
+    textSecondary: "#555555",
+    textPrimary: "#1a1a1a",
     textWhite: "#ffffff",
   },
 
   chartPrimary: "#c9a84c",
-  chartSecondary: "#4a8a7a",
-  chartGrid: "#1e3a3a",
+  chartSecondary: "#1a3a3a",
+  chartGrid: "#e0e0d8",
 }
 
 export const typography = {
@@ -43,9 +60,9 @@ export const typography = {
 }
 
 export const shadows = {
-  card: "shadow-lg shadow-black/30",
-  cardHover: "hover:shadow-xl hover:shadow-black/40",
-  button: "shadow-md shadow-black/20",
+  card: "shadow-sm",
+  cardHover: "hover:shadow-md",
+  button: "shadow-sm",
 }
 
 export const rounded = {
@@ -60,4 +77,11 @@ export const spacing = {
   sectionGap: "space-y-8",
   gridGap: "gap-4",
   gridGapLg: "gap-6",
+}
+
+export const buttons = {
+  primary: "px-4 py-2 rounded-lg shadow-sm text-sm font-normal bg-[#c9a84c] text-white hover:bg-[#b8963e] transition-colors",
+  outline: "px-4 py-2 rounded-lg shadow-sm text-sm font-normal border border-[#1a3a3a] text-[#1a3a3a] hover:bg-[#1a3a3a] hover:text-white transition-colors",
+  ghost: "px-4 py-2 rounded-lg text-sm font-normal border border-[#e0e0d8] text-[#555] hover:bg-[#f0ede8] transition-colors",
+  goldOutline: "px-4 py-2 rounded-lg text-sm font-normal border border-[#c9a84c] text-[#c9a84c] hover:bg-[#f8f7f4] transition-colors",
 }

@@ -1,17 +1,32 @@
-import { colors, typography, shadows, rounded, spacing } from "@/styles/tokens"
+import ExportarDados from "@/components/ExportarDados"
+import { colors, typography, shadows, rounded, spacing, buttons } from "@/styles/tokens"
 
-function TabelaAtendimentos({ dados, busca, setBusca }) {
+function TabelaAtendimentos({ dados, busca, setBusca, filtroRealizado, setFiltroRealizado }) {
   return (
     <div className={`${colors.bgCard} ${rounded.lg} ${spacing.cardPadding} ${shadows.card} border ${colors.border}`}>
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <h2 className={`${typography.heading2} ${colors.textGold}`}>Agendamentos</h2>
-        <input
-          type="text"
-          placeholder="Buscar por cliente, advogado ou organização..."
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          className={`w-full md:w-96 px-4 py-2 ${rounded.md} ${colors.bgPrimary} border ${colors.border} ${colors.textPrimary} placeholder-gray-500 focus:outline-none ${colors.focusBorder} ${typography.body}`}
-        />
+      <div className="flex flex-col gap-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <h2 className={`${typography.heading2} ${colors.textGold}`}>Agendamentos</h2>
+          <ExportarDados dados={dados} />
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <input
+            type="text"
+            placeholder="Buscar por cliente, advogado ou organização..."
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            className={`flex-1 px-4 py-2 ${rounded.md} ${colors.bgPrimary} border ${colors.border} ${colors.textPrimary} placeholder-gray-400 focus:outline-none ${colors.focusBorder} ${typography.body}`}
+          />
+          <select
+            value={filtroRealizado}
+            onChange={(e) => setFiltroRealizado(e.target.value)}
+            className={`px-4 py-2 ${rounded.md} ${colors.bgPrimary} border ${colors.border} ${colors.textPrimary} focus:outline-none ${colors.focusBorder} ${typography.body}`}
+          >
+            <option value="">Todos</option>
+            <option value="Sim">Realizados</option>
+            <option value="Não">Não realizados</option>
+          </select>
+        </div>
       </div>
 
       <div className="overflow-x-auto">
@@ -42,8 +57,8 @@ function TabelaAtendimentos({ dados, busca, setBusca }) {
                   <td className="py-3 px-4">
                     <span className={`px-2 py-1 ${rounded.full} ${typography.bodySmall} font-medium ${
                       a.realizado === "Sim"
-                        ? "bg-emerald-900 text-emerald-300"
-                        : "bg-red-900 text-red-300"
+                        ? `${colors.bgGreen} ${colors.textWhite}`
+                        : "bg-red-100 text-red-800"
                     }`}>
                       {a.realizado}
                     </span>
