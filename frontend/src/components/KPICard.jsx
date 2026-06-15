@@ -1,16 +1,12 @@
 import { colors, typography, shadows, rounded, spacing } from "@/styles/tokens"
 
-function KPICard({ titulo, valor, destaque = false }) {
+function KPICard({ titulo, valor }) {
   return (
-    <div className={`${spacing.cardPadding} ${rounded.lg} ${shadows.card} border ${
-      destaque
-        ? `${colors.accent} border-transparent`
-        : `${colors.bgCard} ${colors.border}`
-    }`}>
-      <p className={`${typography.bodySmall} mb-1 ${destaque ? "text-yellow-100" : colors.textMuted}`}>
+    <div className={`${spacing.cardPadding} ${rounded.lg} ${shadows.card} border ${colors.bgCard} ${colors.border}`}>
+      <p className={`${typography.bodySmall} mb-1 ${colors.textMuted}`}>
         {titulo}
       </p>
-      <p className={`text-3xl font-bold ${destaque ? "text-white" : colors.textGold}`}>
+      <p className={`text-3xl font-bold ${colors.textGreen}`}>
         {valor}
       </p>
     </div>
