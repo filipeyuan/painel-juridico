@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { colors, typography, spacing } from "@/styles/tokens"
+import { colors, typography, spacing, rounded } from "@/styles/tokens"
 import KPICard from "@/components/KPICard"
 import GraficoBarras from "@/components/GraficoBarras"
 import GraficoLinha from "@/components/GraficoLinha"
@@ -14,7 +14,7 @@ function Dashboard() {
     fetch(`${API}/metricas`)
       .then((r) => r.json())
       .then(setMetricas)
-      .catch(() => setErro("Erro ao carregar métricas. Verifique se o backend está rodando em http://localhost:3001"))
+      .catch(() => setErro("Não foi possível carregar os dados. Tente novamente mais tarde."))
   }, [])
 
   const dadosAdvogado = metricas
@@ -26,7 +26,7 @@ function Dashboard() {
   return (
     <main className={`max-w-7xl mx-auto px-6 py-8 ${spacing.sectionGap}`}>
       {erro && (
-        <div className="bg-red-900 border border-red-700 text-red-300 px-4 py-3 rounded-lg">
+        <div className={`bg-red-50 border border-red-200 text-red-700 px-4 py-3 ${rounded.md}`}>
           {erro}
         </div>
       )}
@@ -35,7 +35,7 @@ function Dashboard() {
         <section>
           <h2 className={`${typography.label} ${colors.textMuted} mb-4`}>Visão Geral</h2>
           <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ${spacing.gridGap}`}>
-            <KPICard titulo="Total de Atendimentos" valor={metricas.total} destaque />
+            <KPICard titulo="Total de Atendimentos" valor={metricas.total} />
             <KPICard titulo="Realizados" valor={metricas.realizados} />
             <KPICard titulo="Não Realizados" valor={metricas.naoRealizados} />
             <KPICard titulo="Taxa de Realização" valor={`${Math.round((metricas.realizados / metricas.total) * 100)}%`} />
@@ -52,7 +52,7 @@ function Dashboard() {
 
       {!metricas && !erro && (
         <div className="flex justify-center py-12">
-          <div className="w-8 h-8 border-2 border-[#c9a84c] border-t-transparent rounded-full animate-spin" />
+          <div className={`w-8 h-8 border-2 ${colors.borderGold} border-t-transparent ${rounded.full} animate-spin`} />
         </div>
       )}
     </main>
