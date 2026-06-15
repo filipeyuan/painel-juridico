@@ -1,11 +1,11 @@
 import ExportarDados from "@/components/ExportarDados"
-import { colors, typography, shadows, rounded, spacing, } from "@/styles/tokens"
+import { colors, typography, shadows, rounded, spacing } from "@/styles/tokens"
 
 function TabelaAtendimentos({ dados, busca, setBusca, filtroRealizado, setFiltroRealizado }) {
   return (
     <div className={`${colors.bgCard} ${rounded.lg} ${spacing.cardPadding} ${shadows.card} border ${colors.border}`}>
       <div className="flex flex-col gap-4 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className={`${typography.heading2} ${colors.textGold}`}>Agendamentos</h2>
           <ExportarDados dados={dados} busca={busca} filtroRealizado={filtroRealizado} />
         </div>
@@ -33,11 +33,11 @@ function TabelaAtendimentos({ dados, busca, setBusca, filtroRealizado, setFiltro
         <table className="w-full text-sm">
           <thead>
             <tr className={`border-b ${colors.border}`}>
-              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label}`}>Cliente</th>
-              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label}`}>Data</th>
-              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label}`}>Horário</th>
-              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label}`}>Advogado</th>
-              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label}`}>Realizado</th>
+              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label} whitespace-nowrap`}>Cliente</th>
+              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label} whitespace-nowrap`}>Data</th>
+              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label} whitespace-nowrap`}>Horário</th>
+              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label} whitespace-nowrap`}>Advogado</th>
+              <th className={`text-left py-3 px-4 ${colors.textMuted} ${typography.label} whitespace-nowrap`}>Realizado</th>
             </tr>
           </thead>
           <tbody>
@@ -50,11 +50,11 @@ function TabelaAtendimentos({ dados, busca, setBusca, filtroRealizado, setFiltro
             ) : (
               dados.map((a) => (
                 <tr key={a.id} className={`border-b ${colors.border} ${colors.bgHover} transition-colors`}>
-                  <td className={`py-3 px-4 ${colors.textPrimary} ${typography.body}`}>{a.nome_cliente}</td>
-                  <td className={`py-3 px-4 ${colors.textSecondary} ${typography.body}`}>{a.data}</td>
-                  <td className={`py-3 px-4 ${colors.textSecondary} ${typography.body}`}>{a.hora_inicio} - {a.hora_fim}</td>
-                  <td className={`py-3 px-4 ${colors.textSecondary} ${typography.body}`}>{a.advogado || "—"}</td>
-                  <td className="py-3 px-4">
+                  <td className={`py-3 px-4 ${colors.textPrimary} ${typography.body} whitespace-nowrap`}>{a.nome_cliente}</td>
+                  <td className={`py-3 px-4 ${colors.textSecondary} ${typography.body} whitespace-nowrap`}>{a.data}</td>
+                  <td className={`py-3 px-4 ${colors.textSecondary} ${typography.body} whitespace-nowrap`}>{a.hora_inicio} - {a.hora_fim}</td>
+                  <td className={`py-3 px-4 ${colors.textSecondary} ${typography.body} whitespace-nowrap`}>{a.advogado || "—"}</td>
+                  <td className="py-3 px-4 whitespace-nowrap">
                     <span className={`px-2 py-1 ${rounded.full} ${typography.bodySmall} font-medium ${
                       a.realizado === "Sim"
                         ? `${colors.bgGreen} ${colors.textWhite}`
