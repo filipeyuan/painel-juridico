@@ -136,6 +136,8 @@ painel-juridico/
 
 ## Limitações conhecidas e melhorias futuras
 
+- Campo "Receita Total" não implementado — o dataset fornecido não contém informações financeiras
+- Busca por área jurídica não implementada — o dataset fornecido não contém esse campo
 - Dados estáticos em JSON — em produção seria substituído por PostgreSQL com migrations
 - Sem autenticação — evolução natural seria adicionar JWT com refresh token
 - Busca sem debounce — cada keystroke dispara uma requisição à API
